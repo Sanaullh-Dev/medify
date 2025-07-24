@@ -165,22 +165,25 @@ export const HospitalCard: React.FC<HospitalCardProps> = ({ hospital }) => {
       // Dispatch custom event to notify other components
       window.dispatchEvent(new CustomEvent("bookingUpdated"));
 
-      // Show success message using toast
-      toast.success(
-        `Appointment booked successfully for ${selectedTimeSlot} on ${dates[selectedDay].dayLabel}, ${dates[selectedDay].dateLabel}!`,
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        }
-      );
+      // Small delay to ensure localStorage write completes
+      setTimeout(() => {
+        // Show success message using toast
+        toast.success(
+          `Appointment booked successfully for ${selectedTimeSlot} on ${dates[selectedDay].dayLabel}, ${dates[selectedDay].dateLabel}!`,
+          {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          }
+        );
 
-      // Reset the form
-      setSelectedTimeSlot(null);
-      setIsExpanded(false);
+        // Reset the form
+        setSelectedTimeSlot(null);
+        setIsExpanded(false);
+      }, 100);
     }
   };
 
