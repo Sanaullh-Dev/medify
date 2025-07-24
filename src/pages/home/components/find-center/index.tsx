@@ -309,7 +309,7 @@ export const FindCenter: React.FC = () => {
             }}
           >
             <Card
-              onClick={() => handleServiceClick(service.id)}
+              onClick={() => handleServiceClick()}
               sx={{
                 cursor: "pointer",
                 textAlign: "center",
