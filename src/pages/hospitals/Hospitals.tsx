@@ -11,9 +11,7 @@ export const Hospitals: React.FC = () => {
         color: "white",
       }}
     >
-      <h1>Hospitals</h1>
-      <p>Find the best hospitals and medical centers near you.</p>
-      <p>This page is coming soon!</p>
+      
     </div>
   );
 };

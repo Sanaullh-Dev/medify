@@ -1,22 +1,24 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logoSvg from "../../assets/logo.svg";
 import "./Header.css";
 import { UIButton } from "../../ui-kit";
+import { routePaths, useAppLocation, useAppNavigation } from "../../router/hooks";
 
 export const Header: React.FC = () => {
-  const location = useLocation();
+  const { isCurrentPath } = useAppLocation();
+  const { goTo } = useAppNavigation();
 
-  const menus: any = [
-    { name: "Find Doctors", path: "/" },
-    { name: "Hospitals", path: "/hospitals" },
-    { name: "Medicines", path: "/" },
-    { name: "Surgeries", path: "/" },
-    { name: "Software for Providers", path: "/" },
-    { name: "Facilities", path: "/" },
+  const menus = [
+    { name: "Find Doctors", path: routePaths.findDoctors, is_active: isCurrentPath(routePaths.findDoctors) },
+    { name: "Hospitals", path: routePaths.hospitals, is_active: isCurrentPath(routePaths.hospitals) },
+    { name: "Medicines", path: "/", is_active: false },
+    { name: "Surgeries", path: "/", is_active: false },
+    { name: "Software for Providers", path: "/", is_active: false },
+    { name: "Facilities", path: "/", is_active: false },
   ];
 
-  const isActive = (path: string) => {
-    return location.pathname === path;
+  const handleMyBookingsClick = () => {
+    goTo(routePaths.myBookings);
   };
 
   return (
@@ -28,60 +30,24 @@ export const Header: React.FC = () => {
             <span className="logo-text">Medify</span>
           </Link>
         </div>
-        <div style={{ display: "flex", alignItems: "center" }}>
+        <div className="header-nav">
           <nav className="nav">
             <ul className="nav-list">
               {menus.map((menu, index: number) => (
-                <li key={index} className="nav-item">
+                <li key={index + "_menu_item"} className="nav-item">
                   <Link
                     to={menu.path}
-                    className={`nav-link ${
-                      isActive(menu.path) ? "active" : ""
-                    }`}
+                    className={`nav-link ${menu.is_active ? "active" : ""}`}
                   >
                     {menu.name}
                   </Link>
                 </li>
               ))}
-              {/* <li className="nav-item">
-              <Link
-                to="/"
-                className={`nav-link ${isActive("/") ? "active" : ""}`}
-              >
-                Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                to="/doctors"
-                className={`nav-link ${isActive("/doctors") ? "active" : ""}`}
-              >
-                Find Doctors
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                to="/hospitals"
-                className={`nav-link ${isActive("/hospitals") ? "active" : ""}`}
-              >
-                Hospitals
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                to="/appointments"
-                className={`nav-link ${
-                  isActive("/appointments") ? "active" : ""
-                }`}
-              >
-                My Bookings
-              </Link>
-            </li> */}
             </ul>
           </nav>
           <UIButton
-            onClick={() => console.log("Button clicked!")}
-            className={undefined}
+            onClick={handleMyBookingsClick}
+            className="header-button"
           >
             My Bookings
           </UIButton>

@@ -1,29 +1,25 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ThemeProvider, CssBaseline } from '@mui/material';
-import theme from './theme';
-import { Header, TopBar } from './components';
-import { Home, Doctors, Hospitals, Appointments } from './pages';
-import "./App.css";
+import { RouterProvider } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { router } from './router';
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Router>
-        <div className="app">
-          <TopBar />
-          <Header />
-          <main className="main-content">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/doctors" element={<Doctors />} />
-              <Route path="/hospitals" element={<Hospitals />} />
-              <Route path="/appointments" element={<Appointments />} />
-            </Routes>
-          </main>
-        </div>
-      </Router>
-    </ThemeProvider>
+    <>
+      <RouterProvider router={router} />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+    </>
   );
 }
 

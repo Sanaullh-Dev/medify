@@ -1,0 +1,21 @@
+/* My Bookings Page Styles */
+.search-button {
+  min-width: 100px !important;
+  height: 48px !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+}
+
+.search-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4) !important;
+}
+
+/* Additional responsive styles */
+@media (max-width: 768px) {
+  .search-button {
+    min-width: 80px !important;
+    height: 44px !important;
+    font-size: 14px !important;
+  }
+}

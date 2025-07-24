@@ -1,0 +1,47 @@
+/* Custom Swiper Pagination Styles */
+.custom-swiper .swiper-pagination {
+  position: relative !important;
+  margin-top: 30px !important;
+  bottom: auto !important;
+  left: auto !important;
+  width: auto !important;
+  text-align: center;
+}
+
+.custom-swiper .swiper-pagination-bullet {
+  width: 12px !important;
+  height: 12px !important;
+  background: #d1d5db !important;
+  opacity: 0.5 !important;
+  margin: 0 6px !important;
+  border-radius: 50% !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer;
+}
+
+.custom-swiper .swiper-pagination-bullet-active {
+  background: var(--primary-color) !important;
+  opacity: 1 !important;
+  transform: scale(1.2) !important;  
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.4) !important;
+}
+
+.custom-swiper .swiper-pagination-bullet:hover {
+  opacity: 0.8 !important;
+  transform: scale(1.1) !important;
+}
+
+/* Ensure pagination is below the slides */
+.offer-section {
+  position: relative;
+}
+
+.custom-swiper {
+  padding-bottom: 20px !important;
+}
+
+/* Hide navigation arrows */
+.custom-swiper .swiper-button-next,
+.custom-swiper .swiper-button-prev {
+  display: none !important;
+}
