@@ -11,7 +11,7 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
 import searchIcon from "@/assets/icons/search.png";
-import doctor from "@/assets/icons/doctor.png";
+import doctor from "@/assets/icons/doctors.png";
 import drugstore from "@/assets/icons/drugstore.png";
 import hospital from "@/assets/icons/hospital.png";
 import capsule from "@/assets/icons/capsule.png";
