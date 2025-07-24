@@ -8,7 +8,6 @@ import { OurMedicalSpecialist } from "./components/our_medical_specialist";
 import { Blogs } from "./components/blogs";
 import { FAQ } from "./components/faq";
 import { DownloadApp } from "./components/download-app";
-import { Footer } from "@/components/footer";
 import { FindCenter } from "./components/find-center";
 
 export const Home: React.FC = () => {
@@ -55,7 +54,6 @@ export const Home: React.FC = () => {
       <Blogs />
       <FAQ />
       <DownloadApp />
-      <Footer />
     </div>
   );
 };

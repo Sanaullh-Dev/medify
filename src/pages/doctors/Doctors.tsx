@@ -6,7 +6,6 @@ import { HospitalCard } from "../../components";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FAQ } from "../home/components/faq";
 import { DownloadApp } from "../home/components/download-app";
-import { Footer } from "@/components/footer";
 
 export const Doctors: React.FC = () => {
   const navigate = useNavigate();
@@ -111,7 +110,9 @@ export const Doctors: React.FC = () => {
           >
             {loading
               ? "Searching medical centers..."
-              : `${hospitals.length} medical centers available in ${city.toLowerCase()}`}
+              : `${
+                  hospitals.length
+                } medical centers available in ${city.toLowerCase()}`}
           </h1>
           <div
             style={{
@@ -176,7 +177,6 @@ export const Doctors: React.FC = () => {
       </div>
       <FAQ />
       <DownloadApp />
-      <Footer />
     </>
   );
 };
