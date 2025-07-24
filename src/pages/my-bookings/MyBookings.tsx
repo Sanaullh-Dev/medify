@@ -47,14 +47,49 @@ export const MyBookings: React.FC = () => {
   const [myBookings, setMyBookings] = useState([]);
   const [allMyBookings, setAllMyBookings] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const myBookingsStore = localStorage.getItem("bookings");
+
+  const loadBookings = () => {
+    const myBookingsStore = localStorage.getItem("bookings");
+    if (myBookingsStore) {
+      try {
+        const bookings = JSON.parse(myBookingsStore);
+        setMyBookings(bookings);
+        setAllMyBookings(bookings);
+      } catch (error) {
+        console.error("Error parsing bookings from localStorage:", error);
+        setMyBookings([]);
+        setAllMyBookings([]);
+      }
+    } else {
+      setMyBookings([]);
+      setAllMyBookings([]);
+    }
+  };
 
   useEffect(() => {
-    if (myBookingsStore) {
-      setMyBookings(JSON.parse(myBookingsStore));
-      setAllMyBookings(JSON.parse(myBookingsStore));
-    }
-  }, [myBookingsStore]);
+    loadBookings();
+
+    // Listen for storage events to handle updates from other tabs/components
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === "bookings") {
+        loadBookings();
+      }
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    // Also listen for custom events from the same tab
+    const handleBookingUpdate = () => {
+      loadBookings();
+    };
+
+    window.addEventListener("bookingUpdated", handleBookingUpdate);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("bookingUpdated", handleBookingUpdate);
+    };
+  }, []);
 
   const handleSearch = () => {
     // Implement search functionality here
@@ -171,7 +206,7 @@ export const MyBookings: React.FC = () => {
                   src={searchIcon}
                   alt="Search"
                   style={{ width: "20px", height: "20px", marginRight: "8px" }}
-                />
+                />{" "}
                 Search
               </UIButton>
             </Box>

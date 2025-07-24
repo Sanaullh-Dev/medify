@@ -39,7 +39,7 @@ export const HospitalCard: React.FC<HospitalCardProps> = ({ hospital }) => {
   const state = hospital.State;
   const zipCode = hospital["ZIP Code"];
   const hospitalType = hospital["Hospital Type"] || "General Hospital";
-  const rating = hospital["Hospital overall rating"];
+  const rating = hospital["Hospital overall rating"] || 4.5;
 
   // Scroll functions for day tabs
   const scrollLeft = () => {
@@ -137,7 +137,7 @@ export const HospitalCard: React.FC<HospitalCardProps> = ({ hospital }) => {
         rating: rating,
         selectedDate: dates[selectedDay],
         selectedTimeSlot: selectedTimeSlot,
-        bookingDate: new Date().toISOString(),
+        bookingDate: dates[selectedDay].fullDate.toISOString(), // Use the selected appointment date
         status: "confirmed",
       };
 
@@ -159,6 +159,9 @@ export const HospitalCard: React.FC<HospitalCardProps> = ({ hospital }) => {
 
       // Save back to localStorage
       localStorage.setItem("bookings", JSON.stringify(appointments));
+
+      // Dispatch custom event to notify other components
+      window.dispatchEvent(new CustomEvent("bookingUpdated"));
 
       // Show success message using toast
       toast.success(

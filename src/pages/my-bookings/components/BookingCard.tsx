@@ -4,13 +4,15 @@ import HospitalIcon from "@/assets/hospital_icon.png";
 import likeIcon from "@/assets/icon/like.png";
 
 interface BookingData {
-  id: number;
+  id: string;
   hospitalName: string;
   hospitalAddress: string;
   hospitalType: string;
   rating: number;
   selectedTimeSlot: string;
-  bookingDate: Date;
+  bookingDate: string; // ISO string
+  selectedDate: any; // The date object with dayLabel, dateLabel, fullDate
+  status: string;
 }
 
 interface BookingCardProps {
