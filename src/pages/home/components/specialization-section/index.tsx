@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import drugstore from "@/assets/icons/drugstore.png";
-import bloodSample from "@/assets/icons/Blood_sample.png";
+import bloodSample from "@/assets/icons/blood_sample.png";
 import heartRate from "@/assets/icons/Heart_rate.png";
 import heartRateMonitor from "@/assets/icons/Heart_rate_monitor.png";
 import primary_care from "@/assets/icons/Primary_care.png";
