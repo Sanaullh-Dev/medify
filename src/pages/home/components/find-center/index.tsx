@@ -11,11 +11,11 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
 import searchIcon from "@/assets/icons/search.png";
-import doctor from "@/assets/icons/Doctor.png";
+import doctor from "@/assets/icons/doctor.png";
 import drugstore from "@/assets/icons/drugstore.png";
-import hospital from "@/assets/icons/Hospital.png";
-import capsule from "@/assets/icons/Capsule.png";
-import ambulance from "@/assets/icons/Ambulance.png";
+import hospital from "@/assets/icons/hospital.png";
+import capsule from "@/assets/icons/capsule.png";
+import ambulance from "@/assets/icons/ambulance.png";
 
 import { UIButton } from "@/ui-kit/button";
 import { ButtonVariants } from "@/constant/defaultValues";

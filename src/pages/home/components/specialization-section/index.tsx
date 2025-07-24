@@ -1,10 +1,10 @@
 import Box from "@mui/material/Box";
 import drugstore from "@/assets/icons/drugstore.png";
 import bloodSample from "@/assets/icons/blood_sample.png";
-import heartRate from "@/assets/icons/Heart_rate.png";
-import heartRateMonitor from "@/assets/icons/Heart_rate_monitor.png";
-import primary_care from "@/assets/icons/Primary_care.png";
-import xRay from "@/assets/icons/X-Ray.png";
+import heartRate from "@/assets/icons/heart_rate.png";
+import heartRateMonitor from "@/assets/icons/heart_rate_monitor.png";
+import primary_care from "@/assets/icons/primary_care.png";
+import xRay from "@/assets/icons/x-ray.png";
 import piscologist from "@/assets/icons/piscologist.png";
 
 export const SpecializationSection = () => {
@@ -16,7 +16,7 @@ export const SpecializationSection = () => {
     { name: "Blood Test", image: bloodSample },
     { name: "Piscologist", image: piscologist },
     { name: "Laboratory", image: drugstore },
-    { name: "X-Ray", image: xRay },
+    { name: "x-ray", image: xRay },
   ];
 
   return (
