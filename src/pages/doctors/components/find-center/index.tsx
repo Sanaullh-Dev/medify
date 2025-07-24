@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box, TextField, InputAdornment, Autocomplete } from "@mui/material";
 import RoomOutlinedIcon from "@mui/icons-material/RoomOutlined";
-import searchIcon from "@/assets/icons/search.png";
+import searchIcon from "@/assets/icon/search.png";
 
 import { UIButton } from "@/ui-kit/button";
 import { ButtonVariants } from "@/constant/defaultValues";

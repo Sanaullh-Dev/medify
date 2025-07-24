@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Box, Typography, TextField, InputAdornment } from "@mui/material";
-import searchIcon from "@/assets/icons/search.png";
+import searchIcon from "@/assets/icon/search.png";
 import { UIButton } from "@/ui-kit/button";
 import { ButtonVariants } from "@/constant/defaultValues";
 import { BookingCard } from "./components/BookingCard";

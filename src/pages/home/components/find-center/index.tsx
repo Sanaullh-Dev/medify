@@ -10,12 +10,12 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
-import searchIcon from "@/assets/icons/search.png";
-import doctor from "@/assets/icons/doctors.png";
-import drugstore from "@/assets/icons/drugstores.png";
-import hospital from "@/assets/icons/hospitals.png";
-import capsule from "@/assets/icons/capsules.png";
-import ambulance from "@/assets/icons/ambulance.png";
+import searchIcon from "@/assets/icon/search.png";
+import doctor from "@/assets/icon/doctors.png";
+import drugstore from "@/assets/icon/drugstores.png";
+import hospital from "@/assets/icon/hospitals.png";
+import capsule from "@/assets/icon/capsules.png";
+import ambulance from "@/assets/icon/ambulance.png";
 
 import { UIButton } from "@/ui-kit/button";
 import { ButtonVariants } from "@/constant/defaultValues";

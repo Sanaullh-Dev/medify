@@ -1,11 +1,11 @@
 import Box from "@mui/material/Box";
-import drugstore from "@/assets/icons/drugstores.png";
-import bloodSample from "@/assets/icons/blood_sample.png";
-import heartRate from "@/assets/icons/heart_rates.png";
-import heartRateMonitor from "@/assets/icons/heart_rate_monitor.png";
-import primary_care from "@/assets/icons/primary_cares.png";
-import xRay from "@/assets/icons/x-ray.png";
-import piscologist from "@/assets/icons/piscologist.png";
+import drugstore from "@/assets/icon/drugstores.png";
+import bloodSample from "@/assets/icon/blood_sample.png";
+import heartRate from "@/assets/icon/heart_rates.png";
+import heartRateMonitor from "@/assets/icon/heart_rate_monitor.png";
+import primary_care from "@/assets/icon/primary_cares.png";
+import xRay from "@/assets/icon/x-ray.png";
+import piscologist from "@/assets/icon/piscologist.png";
 
 export const SpecializationSection = () => {
   const spList: any = [

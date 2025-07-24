@@ -12,7 +12,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { toast } from 'react-toastify';
 import HospitalIcon from "@/assets/hospital_icon.png";
-import likeIcon from "@/assets/icons/like.png";
+import likeIcon from "@/assets/icon/like.png";
 
 interface HospitalCardProps {
   hospital: {

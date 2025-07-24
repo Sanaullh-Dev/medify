@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Box, Typography, Avatar } from "@mui/material";
 import HospitalIcon from "@/assets/hospital_icon.png";
-import likeIcon from "@/assets/icons/like.png";
+import likeIcon from "@/assets/icon/like.png";
 
 interface BookingData {
   id: number;
