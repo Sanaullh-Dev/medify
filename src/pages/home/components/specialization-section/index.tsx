@@ -3,7 +3,7 @@ import drugstore from "@/assets/icons/drugstore.png";
 import bloodSample from "@/assets/icons/blood_sample.png";
 import heartRate from "@/assets/icons/heart_rate.png";
 import heartRateMonitor from "@/assets/icons/heart_rate_monitor.png";
-import primary_care from "@/assets/icons/primary_care.png";
+import primary_care from "@/assets/icons/primary_cares.png";
 import xRay from "@/assets/icons/x-ray.png";
 import piscologist from "@/assets/icons/piscologist.png";
 
