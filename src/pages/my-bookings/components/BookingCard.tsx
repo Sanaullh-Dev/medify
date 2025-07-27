@@ -85,7 +85,7 @@ export const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
               margin: "0 0 8px 0",
             }}
           >
-            {booking.hospitalName}
+            {booking.hospitalName.toLowerCase()}
           </h3>
 
           {/* Address */}

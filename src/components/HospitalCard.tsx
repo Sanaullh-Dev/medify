@@ -131,7 +131,7 @@ export const HospitalCard: React.FC<HospitalCardProps> = ({ hospital }) => {
     if (selectedTimeSlot) {
       const appointmentData = {
         id: Date.now().toString(), // Simple ID generation
-        hospitalName: hospitalName.toLowerCase(),
+        hospitalName: hospitalName, // Keep original casing
         hospitalAddress: `${address}, ${city}, ${state} ${zipCode}`,
         hospitalType: hospitalType,
         rating: rating,
@@ -156,11 +156,9 @@ export const HospitalCard: React.FC<HospitalCardProps> = ({ hospital }) => {
 
       // Add new appointment
       appointments.push(appointmentData);
-      console.log("Saving appointment to localStorage:", appointmentData);
 
       // Save back to localStorage
       localStorage.setItem("bookings", JSON.stringify(appointments));
-      console.log("All appointments in localStorage:", appointments);
 
       // Dispatch custom event to notify other components
       window.dispatchEvent(new CustomEvent("bookingUpdated"));
@@ -255,7 +253,7 @@ export const HospitalCard: React.FC<HospitalCardProps> = ({ hospital }) => {
                 margin: "0 0 8px 0",
               }}
             >
-              {hospitalName}
+              {hospitalName.toLowerCase()}
             </h3>
 
             {/* Subtitle - Location */}

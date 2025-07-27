@@ -50,11 +50,9 @@ export const MyBookings: React.FC = () => {
 
   const loadBookings = () => {
     const myBookingsStore = localStorage.getItem("bookings");
-    console.log("Loading bookings from localStorage:", myBookingsStore);
     if (myBookingsStore) {
       try {
         const bookings = JSON.parse(myBookingsStore);
-        console.log("Parsed bookings:", bookings);
         setMyBookings(bookings);
         setAllMyBookings(bookings);
       } catch (error) {
@@ -63,7 +61,6 @@ export const MyBookings: React.FC = () => {
         setAllMyBookings([]);
       }
     } else {
-      console.log("No bookings found in localStorage");
       setMyBookings([]);
       setAllMyBookings([]);
     }
