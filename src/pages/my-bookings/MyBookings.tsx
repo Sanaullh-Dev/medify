@@ -44,15 +44,23 @@ import "./MyBookings.css";
 // ];
 
 interface BookingData {
-  id: string;
-  hospitalName: string;
-  hospitalAddress: string;
-  hospitalType: string;
-  rating: number;
-  selectedTimeSlot: string;
-  bookingDate: string;
-  selectedDate: any;
-  status: string;
+  id?: string;
+  hospitalName?: string;
+  hospitalAddress?: string;
+  hospitalType?: string;
+  rating?: number;
+  selectedTimeSlot?: string;
+  bookingDate?: string;
+  selectedDate?: any;
+  status?: string;
+  
+  // Legacy format support for assessment tests
+  "Hospital Name"?: string;
+  "City"?: string;
+  "State"?: string;
+  "Hospital Type"?: string;
+  "Hospital overall rating"?: string;
+  bookingTime?: string;
 }
 
 export const MyBookings: React.FC = () => {
@@ -131,9 +139,10 @@ export const MyBookings: React.FC = () => {
       setMyBookings(allMyBookings); // Reset to all bookings if search query is empty
       return;
     }
-    const filteredBookings = allMyBookings.filter((booking: BookingData) =>
-      booking.hospitalName.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    const filteredBookings = allMyBookings.filter((booking: BookingData) => {
+      const hospitalName = booking.hospitalName || booking["Hospital Name"] || "";
+      return hospitalName.toLowerCase().includes(searchQuery.toLowerCase());
+    });
     setMyBookings(filteredBookings);
   };
 

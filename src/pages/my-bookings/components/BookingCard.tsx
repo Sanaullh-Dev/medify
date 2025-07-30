@@ -4,15 +4,23 @@ import HospitalIcon from "@/assets/hospital_icon.png";
 import likeIcon from "@/assets/icon/like.png";
 
 interface BookingData {
-  id: string;
-  hospitalName: string;
-  hospitalAddress: string;
-  hospitalType: string;
-  rating: number;
-  selectedTimeSlot: string;
-  bookingDate: string; // ISO string
-  selectedDate: any; // The date object with dayLabel, dateLabel, fullDate
-  status: string;
+  id?: string;
+  hospitalName?: string;
+  hospitalAddress?: string;
+  hospitalType?: string;
+  rating?: number;
+  selectedTimeSlot?: string;
+  bookingDate?: string; // ISO string
+  selectedDate?: any; // The date object with dayLabel, dateLabel, fullDate
+  status?: string;
+  
+  // Legacy format support for assessment tests
+  "Hospital Name"?: string;
+  "City"?: string;
+  "State"?: string;
+  "Hospital Type"?: string;
+  "Hospital overall rating"?: string;
+  bookingTime?: string;
 }
 
 interface BookingCardProps {
@@ -90,7 +98,7 @@ export const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
               margin: "0 0 8px 0",
             }}
           >
-            {booking.hospitalName}
+            {booking.hospitalName || booking["Hospital Name"] || "Hospital Name Not Available"}
           </h3>
 
           {/* Address */}
@@ -102,7 +110,8 @@ export const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
               marginBottom: "8px",
             }}
           >
-            {booking?.hospitalAddress}
+            {booking?.hospitalAddress || 
+             (booking?.City && booking?.State ? `${booking.City}, ${booking.State}` : "Address Not Available")}
           </Typography>
 
           {/* Description */}
@@ -174,7 +183,7 @@ export const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
             padding: "8px 12px",
           }}
         >
-          {booking.selectedTimeSlot}
+          {booking.selectedTimeSlot || booking.bookingTime || "Time Not Available"}
         </Typography>
 
         {/* Date Chip */}
@@ -201,11 +210,14 @@ export const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
               textAlign: "center",
             }}
           >
-            {new Date(booking.bookingDate).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
+            {booking.bookingDate 
+              ? new Date(booking.bookingDate).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })
+              : "Date Not Available"
+            }
           </Typography>
         </Box>
       </Box>
