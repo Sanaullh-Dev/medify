@@ -2,6 +2,8 @@ import { RouterProvider } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { router } from './router';
+import { DevTestPanel } from './components/DevTestPanel';
+import './utils/testPersistence'; // Import test utilities
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
         pauseOnHover
         theme="light"
       />
+      <DevTestPanel />
     </>
   );
 }

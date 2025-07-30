@@ -43,35 +43,62 @@ import "./MyBookings.css";
 //   },
 // ];
 
+interface BookingData {
+  id: string;
+  hospitalName: string;
+  hospitalAddress: string;
+  hospitalType: string;
+  rating: number;
+  selectedTimeSlot: string;
+  bookingDate: string;
+  selectedDate: any;
+  status: string;
+}
+
 export const MyBookings: React.FC = () => {
-  const [myBookings, setMyBookings] = useState([]);
-  const [allMyBookings, setAllMyBookings] = useState([]);
+  const [myBookings, setMyBookings] = useState<BookingData[]>([]);
+  const [allMyBookings, setAllMyBookings] = useState<BookingData[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   const loadBookings = () => {
     const myBookingsStore = localStorage.getItem("bookings");
     if (myBookingsStore) {
       try {
         const bookings = JSON.parse(myBookingsStore);
-        setMyBookings(bookings);
-        setAllMyBookings(bookings);
+        console.log("Parsed bookings:", bookings);
+        
+        // Ensure bookings is an array
+        if (Array.isArray(bookings)) {
+          setMyBookings(bookings);
+          setAllMyBookings(bookings);
+        } else {
+          console.error("Bookings data is not an array:", bookings);
+          setMyBookings([]);
+          setAllMyBookings([]);
+        }
       } catch (error) {
         console.error("Error parsing bookings from localStorage:", error);
         setMyBookings([]);
         setAllMyBookings([]);
       }
     } else {
+      console.log("No bookings found in localStorage");
       setMyBookings([]);
       setAllMyBookings([]);
     }
+    
+    setIsLoading(false);
   };
 
   useEffect(() => {
+    // Initial load
     loadBookings();
 
     // Listen for storage events to handle updates from other tabs/components
     const handleStorageChange = (e: StorageEvent) => {
       if (e.key === "bookings") {
+        console.log("Storage change detected, reloading bookings");
         loadBookings();
       }
     };
@@ -80,6 +107,7 @@ export const MyBookings: React.FC = () => {
 
     // Also listen for custom events from the same tab
     const handleBookingUpdate = () => {
+      console.log("Booking update event received, reloading bookings");
       loadBookings();
     };
 
@@ -97,7 +125,7 @@ export const MyBookings: React.FC = () => {
       setMyBookings(allMyBookings); // Reset to all bookings if search query is empty
       return;
     }
-    const filteredBookings = allMyBookings.filter((booking: any) =>
+    const filteredBookings = allMyBookings.filter((booking: BookingData) =>
       booking.hospitalName.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setMyBookings(filteredBookings);
@@ -232,14 +260,39 @@ export const MyBookings: React.FC = () => {
         >
           {/* Left Column - Bookings List */}
           <Box sx={{ flex: 1 }}>
-            {myBookings.length > 0 ? (
-              <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-                {myBookings.map((booking: any) => (
+            {isLoading && (
+              <Box
+                sx={{
+                  textAlign: "center",
+                  paddingY: 8,
+                  backgroundColor: "white",
+                  borderRadius: "12px",
+                  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  sx={{ color: "#666", marginBottom: 2 }}
+                >
+                  Loading bookings...
+                </Typography>
+              </Box>
+            )}
+            
+            {!isLoading && myBookings.length > 0 && (
+              <Box 
+                data-testid="bookings-list"
+                sx={{ display: "flex", flexDirection: "column", gap: 2 }}
+              >
+                {myBookings.map((booking: BookingData) => (
                   <BookingCard key={booking.id} booking={booking} />
                 ))}
               </Box>
-            ) : (
+            )}
+            
+            {!isLoading && myBookings.length === 0 && (
               <Box
+                data-testid="no-bookings"
                 sx={{
                   textAlign: "center",
                   paddingY: 8,

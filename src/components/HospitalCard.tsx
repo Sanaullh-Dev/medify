@@ -158,30 +158,40 @@ export const HospitalCard: React.FC<HospitalCardProps> = ({ hospital }) => {
       appointments.push(appointmentData);
 
       // Save back to localStorage
-      localStorage.setItem("bookings", JSON.stringify(appointments));
+      try {
+        localStorage.setItem("bookings", JSON.stringify(appointments));
+        
+        // Verify the data was saved
+        const savedData = localStorage.getItem("bookings");
+        if (savedData) {
+          const parsedData = JSON.parse(savedData);
+          console.log("Successfully saved booking:", appointmentData);
+          console.log("Total bookings now:", parsedData.length);
+        }
+      } catch (error) {
+        console.error("Error saving booking to localStorage:", error);
+        return; // Don't show success message if save failed
+      }
 
       // Dispatch custom event to notify other components
       window.dispatchEvent(new CustomEvent("bookingUpdated"));
 
-      // Small delay to ensure localStorage write completes
-      setTimeout(() => {
-        // Show success message using toast
-        toast.success(
-          `Appointment booked successfully for ${selectedTimeSlot} on ${dates[selectedDay].dayLabel}, ${dates[selectedDay].dateLabel}!`,
-          {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-          }
-        );
+      // Show success message using toast
+      toast.success(
+        `Appointment booked successfully for ${selectedTimeSlot} on ${dates[selectedDay].dayLabel}, ${dates[selectedDay].dateLabel}!`,
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        }
+      );
 
-        // Reset the form
-        setSelectedTimeSlot(null);
-        setIsExpanded(false);
-      }, 100);
+      // Reset the form
+      setSelectedTimeSlot(null);
+      setIsExpanded(false);
     }
   };
 
@@ -243,6 +253,7 @@ export const HospitalCard: React.FC<HospitalCardProps> = ({ hospital }) => {
           <Box>
             {/* Title */}
             <h3
+              data-testid="hospital-name"
               style={{
                 color: "var(--primary-color)",
                 fontWeight: 600,
@@ -253,7 +264,7 @@ export const HospitalCard: React.FC<HospitalCardProps> = ({ hospital }) => {
                 margin: "0 0 8px 0",
               }}
             >
-              {hospitalName.toLowerCase()}
+              {hospitalName}
             </h3>
 
             {/* Subtitle - Location */}

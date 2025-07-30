@@ -22,6 +22,7 @@ interface BookingCardProps {
 export const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
   return (
     <Card
+      data-testid="booking-card"
       sx={{
         display: "flex",
         flexDirection: { xs: "column", md: "row" },
@@ -75,6 +76,7 @@ export const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
         <Box>
           {/* Hospital Name */}
           <h3
+            data-testid="hospital-name"
             style={{
               color: "var(--primary-color)",
               fontWeight: 600,
@@ -85,7 +87,7 @@ export const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
               margin: "0 0 8px 0",
             }}
           >
-            {booking.hospitalName.toLowerCase()}
+            {booking.hospitalName}
           </h3>
 
           {/* Address */}
