@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { router } from './router';
 import { DevTestPanel } from './components/DevTestPanel';
 import './utils/testPersistence'; // Import test utilities
+import './utils/diagnosticTest'; // Import diagnostic utilities
 
 function App() {
   return (

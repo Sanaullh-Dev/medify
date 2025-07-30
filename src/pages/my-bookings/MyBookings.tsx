@@ -62,32 +62,38 @@ export const MyBookings: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const loadBookings = () => {
+    console.log("🔍 loadBookings called");
     const myBookingsStore = localStorage.getItem("bookings");
+    console.log("📦 Raw localStorage data:", myBookingsStore);
     if (myBookingsStore) {
       try {
         const bookings = JSON.parse(myBookingsStore);
-        console.log("Parsed bookings:", bookings);
+        console.log("✅ Parsed bookings:", bookings);
+        console.log("📊 Bookings count:", bookings?.length);
+        console.log("🏥 First booking:", bookings?.[0]);
         
         // Ensure bookings is an array
         if (Array.isArray(bookings)) {
+          console.log("✅ Setting bookings state with", bookings.length, "items");
           setMyBookings(bookings);
           setAllMyBookings(bookings);
         } else {
-          console.error("Bookings data is not an array:", bookings);
+          console.error("❌ Bookings data is not an array:", bookings);
           setMyBookings([]);
           setAllMyBookings([]);
         }
       } catch (error) {
-        console.error("Error parsing bookings from localStorage:", error);
+        console.error("❌ Error parsing bookings from localStorage:", error);
         setMyBookings([]);
         setAllMyBookings([]);
       }
     } else {
-      console.log("No bookings found in localStorage");
+      console.log("⚠️ No bookings found in localStorage");
       setMyBookings([]);
       setAllMyBookings([]);
     }
     
+    console.log("✅ Setting isLoading to false");
     setIsLoading(false);
   };
 
@@ -260,6 +266,17 @@ export const MyBookings: React.FC = () => {
         >
           {/* Left Column - Bookings List */}
           <Box sx={{ flex: 1 }}>
+            {/* Debug information in development */}
+            {import.meta.env.DEV && (
+              <Box sx={{ mb: 2, p: 2, backgroundColor: '#f0f0f0', borderRadius: 1 }}>
+                <Typography variant="caption" display="block">
+                  Debug Info - isLoading: {isLoading.toString()}, 
+                  myBookings.length: {myBookings.length}, 
+                  localStorage: {localStorage.getItem('bookings') ? 'has data' : 'empty'}
+                </Typography>
+              </Box>
+            )}
+            
             {isLoading && (
               <Box
                 sx={{
@@ -284,9 +301,12 @@ export const MyBookings: React.FC = () => {
                 data-testid="bookings-list"
                 sx={{ display: "flex", flexDirection: "column", gap: 2 }}
               >
-                {myBookings.map((booking: BookingData) => (
-                  <BookingCard key={booking.id} booking={booking} />
-                ))}
+                {myBookings.map((booking: BookingData) => {
+                  console.log("🔄 Rendering booking:", booking);
+                  return (
+                    <BookingCard key={booking.id} booking={booking} />
+                  );
+                })}
               </Box>
             )}
             

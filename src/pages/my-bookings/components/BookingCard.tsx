@@ -20,6 +20,9 @@ interface BookingCardProps {
 }
 
 export const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
+  console.log("🏥 BookingCard rendering with data:", booking);
+  console.log("🏷️ Hospital name:", booking.hospitalName);
+  
   return (
     <Card
       data-testid="booking-card"
